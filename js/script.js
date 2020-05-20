@@ -11,17 +11,17 @@ project 1 - A Random Quote Generator
  * `quotes` array
 An array of quotes as json objects.
 ***/
-var quote0 = {quote: "You have to be willing to be misunderstood if you're going to innovate",
-  source: "Jeff Bezos",
-  citation: "",
-  year:""};
+var quote0 = {quote: "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.",
+  source: "Patrick McKenzie",
+  citation: "Twitter",
+  year:"2016"};
 var quote1 = {
   quote: "Don’t let the noise of others’ opinions drown out your inner voice.",
   source: "Steve Jobs",
   citation: "Stanford University commencement speech",
   year:"2005"};
 var quote2 = {
-  quote: "The only thing worse than being blind is having sight but no visiom.",
+  quote: "The only thing worse than being blind is having sight but no vision.",
   source: "Helen Keller",
   citation: "",
   year:"",
@@ -41,7 +41,11 @@ var quote5 = {
   source: "Bill Gates",
   citation: "",
   year:""}
-var quotes = [quote0, quote1, quote2, quote3, quote4, quote5];
+var quote6 = {quote: "You have to be willing to be misunderstood if you're going to innovate",
+  source: "Jeff Bezos",
+  citation: "",
+  year:""};
+var quotes = [quote0, quote1, quote2, quote3, quote4, quote5, quote6];
 
 
 
@@ -60,7 +64,7 @@ function generateRandomNumber(arg) {
  and then returns the quote with that location in the quotes array.
 ***/
 function getRandomQuote() {
-  var abc = generateRandomNumber(6);
+  var abc = generateRandomNumber(7);
   return quotes[abc];
 }
 
@@ -112,3 +116,7 @@ function printQuote() {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+setInterval(() => {
+  printQuote()
+}, 10000)
