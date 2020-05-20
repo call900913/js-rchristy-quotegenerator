@@ -20,12 +20,12 @@ var quote1 = {
   source: "Steve Jobs",
   citation: "Stanford University commencement speech",
   year:"2005"};
-
 var quote2 = {
   quote: "The only thing worse than being blind is having sight but no visiom.",
   source: "Helen Keller",
   citation: "",
-  year:""}
+  year:"",
+  tag: "vision"}
 var quote3 = {
   quote: "A man can see further through a tear than through a telescope.",
   source: "Bruce Lee",
@@ -44,16 +44,37 @@ var quote5 = {
 var quotes = [quote0, quote1, quote2, quote3, quote4, quote5];
 
 
+
+/***
+This function generates a random number between 0 and arg inclusive.
+It is used in some functions in this file.
+***/
+
+function generateRandomNumber(arg) {
+  return Math.floor(Math.random() * arg)
+}
+
 /***
  * `getRandomQuote` function
  This function generates a random number between 1 & 6 inclusive,
  and then returns the quote with that location in the quotes array.
 ***/
 function getRandomQuote() {
-  var abc = Math.floor(Math.random() * 6);
+  var abc = generateRandomNumber(6);
   return quotes[abc];
 }
 
+function changeBackgroundColor() {
+  // selection of colors
+  var colors = ["rgb(58, 193, 98)", "rgb(9, 11, 13)", "rgb(1, 120, 212)", "rgb(153, 0, 0)"];
+
+  var num = generateRandomNumber(4);
+  // update the css
+  var htmlbody = document.body.style.backgroundColor = colors[num];
+  console.log(htmlbody);
+  console.log(colors[num]);
+  htmlbody = colors[num];
+}
 
 /***
  * `printQuote` function
@@ -61,6 +82,7 @@ function getRandomQuote() {
  into an html string.
 ***/
 function printQuote() {
+  // Get the quote
   var quotejson = getRandomQuote();
   var htmlstring = `\
     <p class='quote'>${quotejson.quote}</p>\
@@ -72,11 +94,16 @@ function printQuote() {
   if (quotejson.year != "") {
     htmlstring = htmlstring + `<span class='year'>${quotejson.year}</span>`
   }
+  if (quotejson.tag) {
+    htmlstring += `<p>tag: ${quotejson.tag}</p>`
+  }
   htmlstring = htmlstring + "</p>"
+
+  // update the html
   document.getElementById('quote-box').innerHTML = htmlstring;
+  changeBackgroundColor();
   return htmlstring;
 }
-
 
 
 /***
